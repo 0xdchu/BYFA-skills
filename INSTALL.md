@@ -1,6 +1,6 @@
 # Installing Agent Workflows skills (wave 2)
 
-This document is for users who have **never installed a skill**. This repo's skills cover seven workflows: `market-research`, `teardown`, `master-winning-product`, `page-quality`, `posthog`, `optimize-mac` and `event-review`. The coding-specific skills (`sdlc`, `agent-team`, `whats-next`, `create-skill`, `secrets`) are no longer part of this repo.
+This document is for users who have **never installed a skill**. This repo's skills cover eight workflows: `market-research`, `teardown`, `master-winning-product`, `country-map`, `page-quality`, `posthog`, `optimize-mac` and `event-review`. The coding-specific skills (`sdlc`, `agent-team`, `whats-next`, `create-skill`, `secrets`) are no longer part of this repo.
 
 Repo: [github.com/0xdonniechu/BYFA-skills](https://github.com/0xdonniechu/BYFA-skills)
 
@@ -33,7 +33,7 @@ Skill names are always **English**. Guide content in the files is English.
 
 Open **Claude Code**, paste this entire line:
 
-> Install byfa-skills: run `git clone https://github.com/0xdonniechu/BYFA-skills.git ~/.claude/skills/byfa-skills && ~/.claude/skills/byfa-skills/setup` then confirm all seven skills are picked up.
+> Install byfa-skills: run `git clone https://github.com/0xdonniechu/BYFA-skills.git ~/.claude/skills/byfa-skills && ~/.claude/skills/byfa-skills/setup` then confirm all eight skills are picked up.
 
 Or run it yourself in Terminal:
 
@@ -54,7 +54,7 @@ curl -o ~/.claude/skills/optimize-mac/SKILL.md \
   https://raw.githubusercontent.com/0xdonniechu/BYFA-skills/main/optimize-mac/SKILL.md
 ```
 
-Swap `optimize-mac` for the skill name you need. `market-research`, `event-review` and `master-winning-product` ship extra files, so use Method A for them.
+Swap `optimize-mac` for the skill name you need. `market-research`, `event-review`, `master-winning-product` and `country-map` ship extra files, so use Method A for them.
 
 `market-research` ships with a playbook, chart guide, and scripts/assets; install that skill alone with the full commands in **Installation → Claude Code** in [README.md](README.md). Downloading only `SKILL.md` will miss the referenced docs and tools.
 

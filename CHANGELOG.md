@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.0.15 · 2026-11-15
+
+- New skill `country-map`: find which countries a product or a competitor group sells in from Similarweb top-5 countries and Google Trends, calibrated with verified revenue per visit. Ships `scripts/` (Similarweb batch reader that stops at the daily trial limit, CSV parser, Trends region reader).
+
 ## 0.0.14 · 2026-11-10
 
 - The coding-specific skills left this repo: `sdlc`, `agent-team`, `whats-next`, `create-skill` and `secrets` are no longer here (the 0.0.13 `sdlc` update went with it). Seven skills remain: `market-research`, `teardown`, `master-winning-product`, `page-quality`, `posthog`, `optimize-mac`, `event-review`. `setup` now removes a symlink of an earlier install whose skill left this repo.

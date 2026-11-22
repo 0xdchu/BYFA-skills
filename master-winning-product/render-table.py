@@ -9,10 +9,10 @@ from urllib.parse import urlparse
 
 TIERS = [
     ("trustmrr.com", "TrustMRR", "verify"),
+    ("news.ycombinator.com", "Hacker News", "new"),
     ("ycombinator.com", "Y Combinator", "fund"),
     ("speedrun.a16z.com", "a16z Speedrun", "fund"),
     ("producthunt.com", "Product Hunt", "new"),
-    ("news.ycombinator.com", "Hacker News", "new"),
 ]
 TIER_LABEL = {
     "verify": "Verified revenue",
@@ -105,8 +105,7 @@ def main():
     legend = "".join(f'<span class="badge b-{k}">{TIER_LABEL[k]} · {counts[k]}</span>' for k in TIER_LABEL)
     fit_head = "<th>Fit for me</th>" if has_fit else ""
     fit_col = '<col style="width:9%">' if has_fit else ""
-    body = "
-".join(row_html(r) for r in rows)
+    body = "\n".join(row_html(r) for r in rows)
     page = f"""<!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>{e(title)}</title>

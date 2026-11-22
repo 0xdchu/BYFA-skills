@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.0.16 · 2026-11-23
+
+- New skill `pricing`: merges the minimalist-entrepreneur pricing principles (slavingia/skills) with the Build to Own Master week-2 workflow (`master-pricing-model` v0.0.5): anchor on what customers pay today, 11 business models (`pricing/business-models.md`), 3 tiers, a manual service to sell first, price questions for 3 real people.
+- `master-winning-product`: `render-table.py` parses again and tags Show HN rows as newly launched.
+
 ## 0.0.15 · 2026-11-15
 
 - New skill `country-map`: find which countries a product or a competitor group sells in from Similarweb top-5 countries and Google Trends, calibrated with verified revenue per visit. Ships `scripts/` (Similarweb batch reader that stops at the daily trial limit, CSV parser, Trends region reader).

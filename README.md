@@ -25,6 +25,8 @@ All principles are distilled from production engineering experience: rigorous ma
 | `/posthog` | Production analytics with PostHog: event tracking setup, proxy configuration, and executive dashboards. |
 | `/country-map` | Which countries a product or competitor group sells in: Similarweb top-5 countries, Google Trends demand by country, revenue-per-visit calibration; classifies markets as crowded, has a winner, open, or demand with weak supply. |
 | `/pricing` | Pick a business model and 3 price tiers anchored on what customers already pay (hire, freelancer, agency), a manual service to sell this week, and price questions for real people. |
+| `/competitors` | Sourced competitor list (products and substitutes) with revenue, headcount and year per figure, a 20-minute trial plan each, and 2-3 picks for a pricing teardown. |
+| `/pricing-teardown` | Every way a competitor charges, from pricing page to terms: revenue lines, hidden fees, totals at 3 customer sizes, mapped to 11 business models; merged into 3-6 ways for you to charge. |
 | `/master-winning-product` | Weekly scan for winning products (verified revenue, funding, traffic) by industry, niche and keywords; fit scored against your own profile, with a debrief. |
 
 ---

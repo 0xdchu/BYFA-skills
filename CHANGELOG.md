@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.0.17 · 2026-11-23
+
+- New skill `competitors` (from Build to Own Master `master-scan-competitors` v0.0.3): sourced competitor list, trial plans, 2-3 picks for a pricing teardown.
+- New skill `pricing-teardown` (from `master-teardown-pricing` v0.0.2): every revenue line, hidden fees, totals at 3 customer sizes, mapped to the 11 business models in `pricing/`.
+- `market-research`: new revenue-per-employee (ARPE) rule in Analyze; `competitors` uses it.
+
 ## 0.0.16 · 2026-11-23
 
 - New skill `pricing`: merges the minimalist-entrepreneur pricing principles (slavingia/skills) with the Build to Own Master week-2 workflow (`master-pricing-model` v0.0.5): anchor on what customers pay today, 11 business models (`pricing/business-models.md`), 3 tiers, a manual service to sell first, price questions for 3 real people.

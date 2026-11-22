@@ -27,6 +27,9 @@ All principles are distilled from production engineering experience: rigorous ma
 | `/pricing` | Pick a business model and 3 price tiers anchored on what customers already pay (hire, freelancer, agency), a manual service to sell this week, and price questions for real people. |
 | `/competitors` | Sourced competitor list (products and substitutes) with revenue, headcount and year per figure, a 20-minute trial plan each, and 2-3 picks for a pricing teardown. |
 | `/pricing-teardown` | Every way a competitor charges, from pricing page to terms: revenue lines, hidden fees, totals at 3 customer sizes, mapped to 11 business models; merged into 3-6 ways for you to charge. |
+| `/product-spec` | A 3-5 page product spec before any code: problem, result, core first, phased scope with a won't-do list, checkable Phase 1 criteria; loops until you score it 9-10. |
+| `/userflow` | User flows to a defensible standard (ISO 9241, WCAG 2.2): flow-spec table, error branches with recovery, review gate; drawn as one offline `docs/FLOW.html`. |
+| `/mockup` | Clickable mockup before code: a gallery with Playwright proof, or a single offline file with every screen state, a states panel and shareable `#state=` links. |
 | `/master-winning-product` | Weekly scan for winning products (verified revenue, funding, traffic) by industry, niche and keywords; fit scored against your own profile, with a debrief. |
 
 ---

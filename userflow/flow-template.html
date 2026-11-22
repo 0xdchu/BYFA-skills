@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="LANG">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PRODUCT_NAME · Flow and Layout</title>
+<style>
+  body { margin: 0; font: 15px/1.55 -apple-system, system-ui, sans-serif; color: #1a1a1a; background: #f6f6f4; }
+  main { max-width: 1040px; margin: 0 auto; padding: 40px 24px 80px; }
+  h1 { margin: 0 0 4px; font-size: 28px; }
+  p.sub { margin: 0 0 32px; color: #666; }
+  h2 { margin: 40px 0 12px; font-size: 19px; }
+  p.note { margin: -4px 0 12px; color: #666; font-size: 14px; }
+  .card { background: #fff; border: 1px solid #e3e3e0; border-radius: 10px; padding: 20px; overflow-x: auto; }
+  .wire { display: grid; grid-template-columns: 220px 1fr; min-height: 360px; border: 1px solid #ddd; border-radius: 10px; overflow: hidden; background: #fff; }
+  .side { background: #efefec; padding: 16px; font-size: 13px; display: flex; flex-direction: column; gap: 4px; }
+  .side .proj { background: #fff; border: 1px solid #ddd; border-radius: 8px; padding: 8px 10px; margin-bottom: 12px; }
+  .side .grp { margin-top: 10px; color: #888; font-size: 11px; letter-spacing: .08em; }
+  .side .active { background: #e1e1dd; border-radius: 6px; padding: 2px 6px; }
+  .side .bal { margin-top: auto; font-weight: 600; }
+  .content { padding: 24px; display: flex; justify-content: center; align-items: flex-start; }
+  .col { width: 100%; max-width: 640px; border: 2px dashed #b9c3e6; border-radius: 8px; padding: 16px; color: #555; }
+  .col h3 { margin: 0; color: #1a1a1a; }
+  table { border-collapse: collapse; width: 100%; font-size: 14px; }
+  td { padding: 6px 0; border-bottom: 1px solid #eee; }
+  td:last-child { text-align: right; font-variant-numeric: tabular-nums; font-weight: 600; }
+  @media (max-width: 640px) { .wire { grid-template-columns: 1fr; } .side { flex-direction: row; flex-wrap: wrap; } }
+</style>
+</head>
+<body>
+<main>
+  <h1>PRODUCT_NAME · Flow and Layout</h1>
+  <p class="sub">Companion to docs/SPEC.md vSPEC_VERSION · YYYY-MM-DD</p>
+
+  <h2>1. Core flow</h2>
+  <p class="note">From the first screen to the result the user gets.</p>
+  <div class="card"><pre class="mermaid">
+flowchart TD
+  A["1. First screen"] -->|user enters details| B["2. Second screen"]
+  B -->|clicks Continue| C{"Valid?"}
+  C -->|yes| D["3. Result"]
+  C -->|no| E["Show error, keep input"]
+  E -->|fix and resubmit| B
+  </pre></div>
+
+  <h2>2. Most important exchange</h2>
+  <p class="note">The most important exchange between user, System and third parties.</p>
+  <div class="card"><pre class="mermaid">
+sequenceDiagram
+  participant U as User
+  participant P as System
+  participant T as Third party
+  U->>P: sends request
+  P->>P: checks conditions
+  alt conditions not met
+    P-->>U: explains why, does nothing else
+  else conditions met
+    loop each item
+      P->>T: calls processing
+      T-->>P: returns result
+    end
+    P-->>U: shows result
+  end
+  </pre></div>
+
+  <h2>3. Roles</h2>
+  <p class="note">One box per role: who does which step.</p>
+  <div class="card"><pre class="mermaid">
+flowchart TD
+  subgraph R1["User"]
+    u1["Send request"]
+  end
+  subgraph R2["System"]
+    s1["Record"] -->|automatic| s2["Process"]
+  end
+  subgraph R3["Admin"]
+    a1["Review exceptions"]
+  end
+  u1 -->|via form| s1
+  s2 -->|failure case| a1
+  a1 -->|replies| u1
+  </pre></div>
+
+  <!-- Optional: Layout. Keep and edit it if the spec has a UI section; otherwise delete from this comment to the end of the .wire block and rename "Flow and Layout" to "Flow" in <title> and <h1>. See SKILL.md, "FLOW.html output". -->
+  <h2>4. Layout</h2>
+  <p class="note">Wireframe from the spec UI section: where the menu and content sit.</p>
+  <div class="wire">
+    <div class="side">
+      <strong>PRODUCT_NAME</strong>
+      <div class="grp">MENU GROUP</div><div class="active">Current screen</div><div>Other screen</div>
+    </div>
+    <div class="content">
+      <div class="col">
+        <h3>Page title</h3>
+        <div>One-line description</div>
+        <p>Content column: up to about 1040 px wide, centred, starting at the top.</p>
+      </div>
+    </div>
+  </div>
+</main>
+<script type="module">
+  import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11.4.1/dist/mermaid.esm.min.mjs";
+  mermaid.initialize({ startOnLoad: true, theme: "neutral" });
+</script>
+</body>
+</html>

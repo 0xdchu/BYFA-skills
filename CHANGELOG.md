@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.0.18 · 2026-11-23
+
+- New skill `product-spec` (from Build to Own Master `master-product-spec` v0.0.2): 5-part spec, at most 3 questions, won't-do list, owner-scored review loop to 9-10.
+- `userflow` and `mockup` move into this repo. `userflow` gains a FLOW.html output (from `master-user-flow` v0.0.2) with `flow-template.html`; `mockup` gains a single-file mode (from `master-clickable-mockup` v0.0.2): states table, `#state=` links, states panel, logo sources, spec feedback loop.
+
 ## 0.0.17 · 2026-11-23
 
 - New skill `competitors` (from Build to Own Master `master-scan-competitors` v0.0.3): sourced competitor list, trial plans, 2-3 picks for a pricing teardown.

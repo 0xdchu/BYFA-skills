@@ -30,6 +30,7 @@ All principles are distilled from production engineering experience: rigorous ma
 | `/product-spec` | A 3-5 page product spec before any code: problem, result, core first, phased scope with a won't-do list, checkable Phase 1 criteria; loops until you score it 9-10. |
 | `/userflow` | User flows to a defensible standard (ISO 9241, WCAG 2.2): flow-spec table, error branches with recovery, review gate; drawn as one offline `docs/FLOW.html`. |
 | `/mockup` | Clickable mockup before code: a gallery with Playwright proof, or a single offline file with every screen state, a states panel and shareable `#state=` links. |
+| `/team-sprint` | Weekly team meeting to a record and draft tickets for the Product role: decisions, who took what, open questions; 5-part tickets with one assignee, deadline and label; nothing goes to Linear before you approve. |
 | `/master-winning-product` | Weekly scan for winning products (verified revenue, funding, traffic) by industry, niche and keywords; fit scored against your own profile, with a debrief. |
 
 ---

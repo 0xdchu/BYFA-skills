@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.0.19 · 2026-11-23
+
+- New skill `team-sprint` (from Build to Own Master `master-team-sprint` v0.0.1): weekly meeting transcript to a meeting record and 5-part draft tickets (one assignee, deadline, label each); stops for Product to edit, and writes to Linear (document, issues in the current cycle, links) only after a clear approval; markdown export when there is no Linear MCP.
+
 ## 0.0.18 · 2026-11-23
 
 - New skill `product-spec` (from Build to Own Master `master-product-spec` v0.0.2): 5-part spec, at most 3 questions, won't-do list, owner-scored review loop to 9-10.

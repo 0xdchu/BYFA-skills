@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.0.24 · 2026-11-25
+
+- `mockup`: the frontmatter description is now a quoted YAML string; its unquoted `: ` made strict YAML parsers reject the file. Text unchanged.
+
 ## 0.0.23 · 2026-11-24
 
 - New skill `usability-test`: the "test with 5 users" step between `/mockup` and code. Plan with 3-5 tasks taken from the flow's success criteria (no UI labels, a visible success state each), a screener from the spec's user groups, consent and a moderator script; a pilot that is never counted; local transcription and screen frames; a task table in counts ("3 of 5", never "60%") and findings with quotes, 0-4 severity and where to fix (spec, flow step or screen). Nothing changes in the spec, flow or mockup before the owner picks the fixes.

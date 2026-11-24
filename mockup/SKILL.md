@@ -91,7 +91,7 @@ Use when the input is `docs/SPEC.md` (and `docs/FLOW.html`) from `/product-spec`
 5. **"Mockup states" panel** `/* mockup controls (not part of the product) */`: dark, fixed bottom-right, collapsible, open on desktop; one group per screen numbered as the spec, one button per state, "Start over", and a line saying the real buttons work too. At ≤ 760 px: a collapsed full-width bar at the bottom, opens to max 60% height with inner scroll, page gets matching `padding-bottom`. Menu collapses to a top bar, wide tables scroll inside their box, no page-level horizontal scroll at 390 px.
 6. **Logos:** other brands only as real files from dashboard-icons (`https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/svg/<name>.svg`) or lobehub (`https://unpkg.com/@lobehub/icons-static-svg@<pinned version>/icons/<name>.svg`), downloaded into `mockup/assets/` and opened to confirm they are the right mark. Not found in either: the name as text. Never draw a logo or use an emoji. The product's own logo: the user's file, else a square with its initial.
 7. **Self-check:** headlessly click every panel button (each state renders, 0 console errors), walk the real buttons in FLOW order from first screen to result, screenshot 2-3 screens at 390 and 1440 px. Without a browser, list these steps for the user and say what was not checked.
-8. **Feedback loop:** UI feedback (copy, colour, position) changes the mockup. Behaviour feedback (add a step, drop a screen, change a rule) changes the mockup **and** proposes the exact edit to `docs/SPEC.md` (and `docs/FLOW.html` if affected); edit the spec only with consent, and add a line to its change history. When the user says it is right: set the spec's "Mockup" line to `mockup/index.html`, add it to `START-HERE.md`, suggest building only the core of Phase 1 (`/sdlc` if available).
+8. **Feedback loop:** UI feedback (copy, colour, position) changes the mockup. Behaviour feedback (add a step, drop a screen, change a rule) changes the mockup **and** proposes the exact edit to `docs/SPEC.md` (and `docs/FLOW.html` if affected); edit the spec only with consent, and add a line to its change history. When the user says it is right: set the spec's "Mockup" line to `mockup/index.html`, add it to `START-HERE.md`, suggest `/usability-test` on this file first (in person, or deployed as step 7 says for remote sessions), then building only the core of Phase 1 (`/sdlc` if available).
 
 ## Don't
 
@@ -107,7 +107,7 @@ Use when the input is `docs/SPEC.md` (and `docs/FLOW.html`) from `/product-spec`
 - The gallery lists every screen, and each opens on web and mobile, light and dark.
 - If deployed, the live URL is 200 and `X-Robots-Tag: noindex`.
 
-Next: a green check proves the screens render, not that people can use them. Suggest `/usability-test` with the share link before any code.
+Next: a green check proves the screens render, not that people can use them. Suggest `/usability-test` with the share link (single-file mode: the offline file, see its step 8) before any code.
 
 ## Eval
 

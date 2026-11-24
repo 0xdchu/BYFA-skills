@@ -97,7 +97,7 @@ Terms: **user** is whoever uses your product. If users have their own customers 
   | What makes them trust a new tool | Where proof, price and a support contact sit |
   | Language and terms they use | UI labels in their words (section 2 quotes), not ours |
 
-  Each row's middle column follows the section 2 rule: a source, `TODO: ask <group> about <trait>`, or "agent suggestion". Never fill a trait from a stereotype of the group. A trait nobody knows yet becomes a task for `/usability-test` (warm-up question), not a guess. Users' customers who see their own screens get their own rows.
+  The middle column is a source (a quote, a talk, data) or `TODO: ask <group> about <trait>`; never "agent suggestion" and never a stereotype of the group. The decision column may be an "agent suggestion". A `TODO` trait goes on the list for the section 2 talks; if still open when the mockup is tested, `/usability-test` asks it in the warm-up. Users' customers who see their own screens get their own rows.
 - **UI.** Layout (where the menu and content sit), numbered list of main screens, labels in the viewer's language. Each layout choice that comes from the ICP table names its row.
 - **Data.** Main tables, one line each: name, key columns.
 - **Proposed tech.** Marked "proposal, decided at build time". The smallest thing that works.
@@ -157,14 +157,14 @@ Re-run in a folder with `docs/SPEC.md`: read it and its history, continue that v
 
 | # | Check | Target |
 |---|---|---|
-| E1 | Sections 2-6 present; section 4 has the core/shell table | 100% |
+| E1 | Sections 2-6 present; section 4 has the core/shell table and the ICP → UI table | 100% |
 | E2 | Won't do has at least 3 concrete lines | 100% |
 | E3 | Every "Phase 1 is done when" line has a check | 100% |
 | E4 | Questions asked before writing | ≤ 3 |
 | E5 | Quotes or numbers (thresholds included) without source, `TODO` or "agent suggestion" | 0 |
 | E6 | Next step suggested before a 9-10 score | 0 |
 | E7 | Lines of application code written | 0 |
-| E8 | ICP → UI rows without a source, `TODO` or "agent suggestion" | 0 |
+| E8 | ICP → UI rows whose trait has neither a source nor a `TODO` | 0 |
 
 ## Improve from use
 

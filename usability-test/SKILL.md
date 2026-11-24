@@ -1,6 +1,6 @@
 ---
 name: usability-test
-description: Test a user flow or clickable mockup with 5 people who match the ICP before code, then turn the sessions into ranked findings that point back to the spec section, flow step or screen to fix. Writes the plan (3-5 tasks from the flow's success criteria, an ICP screener, consent, a moderator script), guides a pilot and 5 think-aloud sessions, transcribes recordings locally, scores each task and writes findings with verbatim quotes, "k of 5" counts and a 0-4 severity. Use when saying "usability test", "user test", "test the mockup with users", "thử với khách", "thử với 5 người", "kiểm thử khả dụng", or when the userflow review gate still needs "checked with a real user". Not for discovery interviews before any design (product-spec section 2), drawing the flow (userflow), building screens (mockup), A/B tests or analytics on a live product (posthog).
+description: Test a user flow or clickable mockup with 5 people who match the ICP before code, then turn the sessions into ranked findings that point back to the spec section, flow step or screen to fix. Writes the plan (3-5 tasks from the flow's success criteria, an ICP screener, consent, a moderator script), guides a pilot and 5 think-aloud sessions, transcribes recordings locally, scores each task and writes findings with verbatim quotes, "k of 5" counts and a 0-4 severity. Use when saying "usability test", "user test", "test the mockup with users", "thử với khách", "thử với 5 người", "kiểm thử khả dụng", or when the userflow review gate still needs "checked with a real user". Not for discovery interviews before any design (product-spec section 2), drawing the flow (userflow), building screens (mockup), analytics on a live product (posthog), or A/B tests.
 metadata:
   category: product
   version: "0.1.0"
@@ -21,7 +21,7 @@ A mockup that the team finds clear proves nothing; the team already knows how it
 ## Don't use
 
 - Before any design, to learn whether the problem is real: that is a discovery interview (`/product-spec` section 2, "talk to 3-5 people").
-- To compare two live versions with traffic: A/B test or analytics (`/posthog`).
+- To measure a live product: analytics (`/posthog`). A/B tests are out of scope for every skill here.
 - To ask people what price they would pay: `/pricing` has its own price questions.
 
 ## Agent's part, owner's part
@@ -39,7 +39,7 @@ The agent never contacts participants, never invents one, and never fills a sess
 
 1. `docs/SPEC.md`: section 2 (user groups and how they do it today), section 3 (the result and its numbers), the ICP → UI table in section 4 if present.
 2. `docs/FLOW.html` and the flow-spec table: steps, failure branches, the measurement column.
-3. The mockup's share link and its `#state=` links (`/mockup`); it must open without a login.
+3. The mockup: its share link and `#state=` links (gallery mode, step 7 of `/mockup`; it must open without a login), or the offline `mockup/index.html` (single-file mode). An offline file is tested in person on the moderator's machine, or deployed as `/mockup` step 7 says before any remote session.
 4. An earlier round in `docs/usability/`, if any: re-test its fixed problems first.
 
 Missing spec or flow: stop and say which skill to run first. Missing mockup: test the flow on paper only if the owner asks; say the result is weaker.
@@ -70,21 +70,23 @@ Missing spec or flow: stop and say which skill to run first. Missing mockup: tes
 ### 4. Run the sessions (owner), with the moderator script
 Write the script into the plan (`templates/plan.md`). 30-45 minutes, one person at a time, remote with screen share and recording, or in person recording the screen.
 - **Open:** "We are testing the product, not you. There are no wrong answers. Please say out loud what you are thinking."
-- **Warm-up (5 min):** 2-3 questions on how they do this job today. It checks they fit the ICP and gives words for the findings.
-- **Tasks:** read one at a time. After each, ask the Single Ease Question: "How easy or hard was that, from 1 (very hard) to 7 (very easy)?"
-- **Moderator rules:** do not help, do not explain, do not defend the design. Answer a question with a question ("What would you expect?"). Silent for 10 seconds: "What are you thinking now?" Past the time cap or stuck: mark the task failed, give the smallest hint, write the hint down, go on so the later tasks stay testable.
+- **Warm-up (5 min):** 2-3 questions on how they do this job today, plus one question for each trait still `TODO` in the spec's ICP → UI table. It checks they fit the ICP, gives words for the findings, and fills those traits (write the answers back into the spec only with the owner's consent).
+- **Tasks:** read one at a time. After each, ask the Single Ease Question (Sauro and Dumas, 2009): "How easy or hard was that, from 1 (very hard) to 7 (very easy)?"
+- **Moderator rules:** do not help, do not explain, do not defend the design. Answer a question with a question ("What would you expect?"). Silent for 10 seconds: "What are you thinking now?" Past the time cap or stuck: give the smallest hint and write it down. Finished after the hint = `success with hint`; still not finished = `fail`, then move on so the later tasks stay testable.
 - **Close:** "What was most confusing?" and "What would you tell a friend this does?" (checks the result in spec section 3 came across).
 - Done when: each session has a recording or the moderator's notes with timestamps.
 
 ### 5. Transcribe and look
-- Transcribe each recording with a local Whisper in the session's language. Run it under a memory cap; recordings stay on this machine and are never uploaded to a third-party service unless the consent text says so.
+- Recordings go in `docs/usability/<round>/raw/`, which is gitignored. They stay on this machine and are never uploaded to a third-party service unless the consent text says so.
+- Check the tools first: `command -v whisper ffmpeg`. Missing one: skip that part, work from the moderator's timestamped notes, and say in `findings.md` which sessions had no transcript or no frames.
+- Transcribe each recording with a local Whisper in the session's language (`whisper <file> --language <code>`). Long files use a lot of memory; on Linux run it under a cap (`systemd-run --user --scope -p MemoryMax=8G whisper …`).
 - From the screen recording, cut frames with `ffmpeg` around each task (one frame every 2-5 seconds into a contact sheet) and read them as images, to see where they clicked, not only what they said.
 - Write one `sessions/P<n>.md` per participant (template in `templates/plan.md`): warm-up answers, then per task outcome, time, wrong turns, SEQ, quotes with timestamps.
 
 ### 6. Score each task
 One table, tasks × participants, in `findings.md`:
-- **Outcome:** `success` · `success with hint` · `fail` · `gave up`.
-- **Time on task** from the recording, `n/a` when failed.
+- **Outcome:** `success` · `success with hint` · `fail` · `gave up`. Only `success` counts as a success; `success with hint` is shown next to it ("2 of 5, +1 with hint"), never added in.
+- **Time on task** from the recording, for unassisted successes only; `n/a` otherwise.
 - **Wrong turns:** each time they went to a screen or pressed a control off the flow's path.
 - **SEQ** 1-7.
 - **Where stuck:** flow step number and mockup screen id.
@@ -96,7 +98,7 @@ Group what you saw into problems. Each problem in `findings.md` (`templates/find
 - what happened, in one sentence a builder can act on;
 - **k of N** who hit it, and which participants;
 - evidence: verbatim quote with participant and timestamp, or the frame that shows it;
-- **severity 0-4** (Nielsen, "Severity Ratings for Usability Problems", NN/g): 0 not a problem · 1 cosmetic · 2 minor · 3 major, fix before launch · 4 blocks the task. Judge frequency, impact and whether it repeats;
+- **severity 0-4** (Nielsen, "Severity Ratings for Usability Problems", NN/g): 0 not a problem · 1 cosmetic · 2 minor · 3 major, high priority to fix · 4 catastrophe, imperative to fix before release. Judge frequency, impact and whether it repeats;
 - **where to fix**: `SPEC §n`, `FLOW step n`, or mockup `screen-id` + state;
 - **root or surface**: a problem with the offer, the ICP or the core goes to the spec first; a label, layout or missing state goes to the mockup;
 - a proposed fix, marked "agent suggestion".
@@ -107,7 +109,7 @@ Also list what worked (tasks most people did without hesitation), so a fix does 
 - One message: full path of `findings.md`; the task table; the severity 3-4 problems first; the 3 findings the agent is least sure of and why.
 - The owner decides what to fix. The agent changes the spec, flow or mockup only after that decision, through `/product-spec`, `/userflow` or `/mockup`.
 - After fixes: round 2 with 5 **new** people, on the tasks that touched fixed problems plus one task that worked, to catch regressions.
-- Record the round in the flow's review gate ("checked with real users: `<date>`, `docs/usability/<round>/findings.md`") and in `START-HERE.md`.
+- Record the round in the `## Review` section of the flow spec (`/userflow` reference §2): "Usability round <N>: `<date>`, `docs/usability/<round>/findings.md`", and in `START-HERE.md`.
 
 ## Output
 
@@ -116,9 +118,10 @@ docs/usability/<YYYY-MM-DD>-round<N>/
   plan.md        questions, tasks, screener, invite, consent, moderator script
   sessions/P1.md … P5.md
   findings.md    task table, problems by severity, what worked
+  raw/           recordings, full transcripts, frames (gitignored)
 ```
 
-Recordings and full transcripts stay out of git (add the folder to `.gitignore`); they hold personal data. Files use participant codes P1-P5, never names, phone numbers or faces.
+Add `docs/usability/*/raw/` to `.gitignore` before the first session; recordings and full transcripts hold personal data. Files use participant codes P1-P5, never names, phone numbers or faces.
 
 ## Do not
 
@@ -135,7 +138,7 @@ Recordings and full transcripts stay out of git (add the folder to `.gitignore`)
 
 - `findings.md` has the task table filled for every participant who took part, and every problem has k of N, evidence, severity and where to fix.
 - Every severity 3-4 problem has a disposition from the owner: fix now, fix later with a reason, or not a problem with a reason.
-- The flow's review gate names this round.
+- The flow spec's `## Review` section names this round.
 
 ## Eval
 
@@ -144,7 +147,7 @@ Recordings and full transcripts stay out of git (add the folder to `.gitignore`)
 | E1 | Tasks that contain a UI label or hint | 0 |
 | E2 | Tasks without a flow step number and a visible success state | 0 |
 | E3 | Quotes, times or scores without a participant code and timestamp | 0 |
-| E4 | Percentages or averages reported from fewer than 20 people | 0 |
+| E4 | Percentages, or averages without their count, in the task table or findings | 0 |
 | E5 | Problems without severity or where to fix | 0 |
 | E6 | Pilot or team members counted as participants | 0 |
 | E7 | Spec, flow or mockup edits before the owner's decision | 0 |

@@ -57,12 +57,16 @@ There is no ISO/IEC standard for the shape of a user-flow diagram. The standards
 | Error rate | | | | |
 
 ## Event plan
-Names `object_action`, snake_case, past tense; fires on the step's result, not the click.
+Names `object_action`, snake_case, as `/posthog` Step 4; fires on the step's result, not the click.
 
 | Event | Flow step | Fires when | Properties (no email, name or free text) | Sent from |
 |---|---|---|---|---|
 | `project_created` | 2 | the project is saved | `source` | client |
 | `payment_failed` | 6 (failure) | the provider returns a decline | `reason_code` | server |
+
+## Review
+- Inspection (ISO 9241-110 + WCAG, §3): <date>, <result>
+- Usability round <N>: <date>, <docs/usability/<round>/findings.md>
 ```
 
 ## 3. WCAG 2.2 checklist for a flow

@@ -5,11 +5,11 @@
 
 ## Task results
 
-Counts, not percentages. Time = median of those who succeeded, with the count.
+Counts, not percentages. Success counts unassisted only; hints shown beside it. Time = median of unassisted successes, with the count.
 
 | Task | P1 | P2 | P3 | P4 | P5 | Success | Median time | SEQ range |
 |---|---|---|---|---|---|---|---|---|
-| T1 | ✓ | ✓ hint | ✗ | ✓ | gave up | 3 of 5 (1 with hint) | 1:40 (n=3) | 2-6 |
+| T1 | ✓ | ✓ hint | ✗ | ✓ | gave up | 2 of 5, +1 with hint | 1:40 (n=2) | 2-6 |
 
 ## Problems, most severe first
 

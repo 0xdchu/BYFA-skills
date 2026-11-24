@@ -45,7 +45,7 @@ Open [reference.md](reference.md) for the full checklist, table template and rev
 5. **Add preconditions and results.** State what must be true before the step and what is true after it. Include data created or changed.
 6. **Annotate accessibility.** Keyboard path, focus order, label, error text, contrast, target size, no colour-only signal.
 7. **Define measurement.** Completion per step, time, error rate, retry rate, drop-off. Do not invent targets before a baseline. Then write the **event plan** that will produce those numbers once the product is live (template in reference §2):
-   - One event per flow-spec row whose completion or drop-off is measured, plus one per failure branch that has a recovery. Name it `object_action` in `snake_case`, past tense, one name one meaning (`project_created`, `post_approved`, `payment_failed`); same rule as `/posthog` Step 4.
+   - One event per flow-spec row whose completion or drop-off is measured, plus one per failure branch that has a recovery. Name it `object_action` in `snake_case`, one name one meaning (`project_created`, `post_approved`, `payment_failed`), as `/posthog` Step 4 does; where Step 4 already requires a name for this site type (`user_signed_up`, `checkout_started`, …), use that name.
    - For each event: the flow step number, when it fires (the result column, not the click: `post_approved` fires when the approval is saved), its properties (only what a metric needs; no email, name or free text), and where it is sent from. Money and anything confirmed by a server fires from the server.
    - Map each metric in the metrics table to the events it is computed from (completion of step 4 = `post_approved` / `draft_opened`). A metric with no event is marked `unmeasured`.
    - Hand the event plan to `/posthog` when the product is wired; this skill names events, it does not install tracking.
@@ -93,7 +93,7 @@ Add a measurement column when the flow has a metric owner. Keep one row per user
 - Each step has a measurable success signal or is marked unmeasured.
 - Notation is consistent and named; no mixing flowchart, BPMN and UML shapes.
 - Every measured step and every recovered failure branch has an event in the event plan; no event fires on a click alone when the step's result is saved later.
-- Checked with real users (`/usability-test`, the round's `findings.md` named here), or a documented inspection that walks every step against ISO 9241-110 and the WCAG checklist in reference §3, with the result recorded.
+- Checked, with the result in the flow spec's `## Review` section (reference §2): before a mockup exists, a documented inspection that walks every step against ISO 9241-110 and the WCAG checklist in reference §3; once `/mockup` exists, a round of `/usability-test`, its `findings.md` named there.
 
 ## Done when
 

@@ -1,0 +1,28 @@
+{
+  "subject": {
+    "type": "brand",
+    "name": "Example Dental Cloud",
+    "aliases": ["Example Dental"],
+    "website": "https://example.com",
+    "one_liner": "Example Dental Cloud is dental clinic management software that helps small clinics in Da Nang book and remind patients by chat.",
+    "category": "dental clinic management software",
+    "location": "Da Nang, Vietnam",
+    "founded": "2021",
+    "founders": ["Jane Doe"],
+    "price": "from USD 29 per clinic per month",
+    "competitors": ["Other Clinic App"],
+    "not_do": ["We do not sell dental equipment"],
+    "data_asset": "Yearly survey of appointment no-show rates in 200 clinics"
+  },
+  "profiles": [
+    {"platform": "linkedin", "url": "https://www.linkedin.com/company/example", "name_shown": "", "bio": "", "website_field": ""},
+    {"platform": "facebook", "url": "https://www.facebook.com/example", "name_shown": "", "bio": "", "website_field": ""},
+    {"platform": "youtube", "url": "https://www.youtube.com/@example", "name_shown": "", "bio": "", "website_field": ""},
+    {"platform": "google-business-profile", "url": "", "name_shown": "", "bio": "", "website_field": ""}
+  ],
+  "recommend_queries": [
+    "What is the best dental clinic management software for small clinics in Da Nang?",
+    "Which app can remind dental patients of appointments by chat in Vietnam?"
+  ],
+  "assistants": ["ChatGPT", "Perplexity", "Gemini", "Claude", "Google AI Mode"]
+}

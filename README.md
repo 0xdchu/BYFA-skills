@@ -32,6 +32,7 @@ All principles are distilled from production engineering experience: rigorous ma
 | `/mockup` | Clickable mockup before code: a gallery with Playwright proof, or a single offline file with every screen state, a states panel and shareable `#state=` links. |
 | `/team-sprint` | Weekly team meeting to a record and draft tickets for the Product role: decisions, who took what, open questions; 5-part tickets with one assignee, deadline and label; nothing goes to Linear before you approve. |
 | `/master-winning-product` | Weekly scan for winning products (verified revenue, funding, traffic) by industry, niche and keywords; fit scored against your own profile, with a debrief. |
+| `/presence-audit` | How AI assistants, search and the press describe a person or brand: the site as AI crawlers read it (no JS, robots.txt, entity markup), name and positioning sentence across profiles, AI answers checked in the apps; a ranked fix list, a press kit and a 30-day re-check. No ranking promises. |
 
 ---
 

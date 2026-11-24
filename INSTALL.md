@@ -54,7 +54,7 @@ curl -o ~/.claude/skills/optimize-mac/SKILL.md \
   https://raw.githubusercontent.com/0xdonniechu/BYFA-skills/main/optimize-mac/SKILL.md
 ```
 
-Swap `optimize-mac` for the skill name you need. `market-research`, `event-review`, `master-winning-product` and `country-map` ship extra files, so use Method A for them.
+Swap `optimize-mac` for the skill name you need. `market-research`, `event-review`, `master-winning-product`, `country-map` and `presence-audit` ship extra files, so use Method A for them.
 
 `market-research` ships with a playbook, chart guide, and scripts/assets; install that skill alone with the full commands in **Installation → Claude Code** in [README.md](README.md). Downloading only `SKILL.md` will miss the referenced docs and tools.
 

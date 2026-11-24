@@ -98,7 +98,7 @@ posthog.init(process.env.NEXT_PUBLIC_POSTHOG_KEY, { // key from env, never hardc
 
 ## Step 4 — Key events by site type
 
-Event names in `snake_case`, form `object_action`, one name one meaning.
+Event names in `snake_case`, form `object_action`, one name one meaning. If the product has a flow spec written by `/userflow` with an `## Event plan` section, wire those events too and keep their names.
 
 | Site type | Required | Nice to have |
 |---|---|---|

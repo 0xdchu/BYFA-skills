@@ -3,7 +3,7 @@ name: product-spec
 description: Write a 3-5 page product spec (docs/SPEC.md) for your own product before any code, in a fixed 5-part frame - problem and who has it, the result users get, how it works core first, phased scope with an explicit "won't do" list, and "Phase 1 is done when" with a check for each line. Reads the context already on the machine first, asks at most 3 questions, never invents customer quotes or numbers, and loops on your feedback until you score it 9-10/10. Use when someone says "write a spec", "product spec", "PRD for my product", "SPEC.md", "viết spec", "đặc tả sản phẩm", "revise the spec from feedback", or Build to Own Master week 4. Not for drawing the flow (use userflow), a clickable mockup (use mockup), or a coding plan inside a repo (use sdlc).
 metadata:
   category: product
-  version: "0.1.0"
+  version: "0.2.0"
   sources: "sonpiaz/bto-master `master-product-spec` v0.0.2"
 ---
 
@@ -86,7 +86,19 @@ Terms: **user** is whoever uses your product. If users have their own customers 
 - **Learning from references.** Table: product · what you used · what to learn · what not to learn. Screenshots go in `docs/refs/01-....png` with `docs/refs/README.md` listing each; then set the References header line to that README.
 - **Main flow.** One short `mermaid` flowchart (about 12 nodes max), then one item per step: screen, what the user does, what the system does. The full diagrams belong to `/userflow`.
 - **Context from the user's own agent.** Not asked. If users already use an AI agent (ChatGPT, Claude, Cursor…), propose a setup prompt they paste into it; the agent fills in their context and writes it to the product (via MCP) or prints JSON to paste. Context silent: keep the proposal, prefixed `TODO: do users already use an AI agent?` and "agent suggestion". Context says they don't: drop it.
-- **UI.** Layout (where the menu and content sit), numbered list of main screens, labels in the viewer's language.
+- **ICP → UI decisions.** Before the UI bullet, a table that turns each user group in section 2 into UI choices, so layout follows who uses it instead of taste: trait · what we know and its source · UI decision. One row per trait that changes a screen:
+
+  | Trait | Typical decision |
+  |---|---|
+  | Device and where they use it (phone on the go, desk) | Phone-first or desktop-first; one-hand reach; how much fits on a screen |
+  | How often (daily vs. now and then) | Dense screens and shortcuts vs. guided steps and reminders |
+  | Comfort with software | Wizard with one choice per screen vs. one editable page |
+  | Apps they already use every day | Copy those apps' patterns (navigation, list, chat, checkout) instead of inventing new ones |
+  | What makes them trust a new tool | Where proof, price and a support contact sit |
+  | Language and terms they use | UI labels in their words (section 2 quotes), not ours |
+
+  The middle column is a source (a quote, a talk, data) or `TODO: ask <group> about <trait>`; never "agent suggestion" and never a stereotype of the group. The decision column may be an "agent suggestion". A `TODO` trait goes on the list for the section 2 talks; if still open when the mockup is tested, `/usability-test` asks it in the warm-up. Users' customers who see their own screens get their own rows.
+- **UI.** Layout (where the menu and content sit), numbered list of main screens, labels in the viewer's language. Each layout choice that comes from the ICP table names its row.
 - **Data.** Main tables, one line each: name, key columns.
 - **Proposed tech.** Marked "proposal, decided at build time". The smallest thing that works.
 
@@ -101,7 +113,7 @@ Terms: **user** is whoever uses your product. If users have their own customers 
 Length: 3-5 pages, about 1,500-3,000 words (`wc -w docs/SPEC.md`). Too long: cut the shell, never the core.
 
 ### 2. Self-check before handing over
-- The 5 parts (sections 2-6) present; section 4 has the core/shell table; section 5 has Won't do; every section 6 line has a check.
+- The 5 parts (sections 2-6) present; section 4 has the core/shell table and the ICP → UI table; section 5 has Won't do; every section 6 line has a check.
 - Every number (including thresholds), name and quote has a source, `TODO`, or "agent suggestion".
 - No promised outcome ("will definitely get customers", "will make revenue").
 - No code; only diagrams, tables, short data examples.
@@ -145,14 +157,17 @@ Re-run in a folder with `docs/SPEC.md`: read it and its history, continue that v
 
 | # | Check | Target |
 |---|---|---|
-| E1 | Sections 2-6 present; section 4 has the core/shell table | 100% |
+| E1 | Sections 2-6 present; section 4 has the core/shell table and the ICP → UI table | 100% |
 | E2 | Won't do has at least 3 concrete lines | 100% |
 | E3 | Every "Phase 1 is done when" line has a check | 100% |
 | E4 | Questions asked before writing | ≤ 3 |
 | E5 | Quotes or numbers (thresholds included) without source, `TODO` or "agent suggestion" | 0 |
 | E6 | Next step suggested before a 9-10 score | 0 |
 | E7 | Lines of application code written | 0 |
+| E8 | ICP → UI rows whose trait has neither a source nor a `TODO` | 0 |
 
 ## Improve from use
+
+Untried so far: the ICP → UI table in section 4 (added 2026-11-24 from a review of the UI design process, accepted by the owner before any real use). The first spec that uses it logs here what the owner changed in it.
 
 After each use: log which part needed the most rounds, with the comment. Once a spec has been built into an MVP, check whether the building agent did anything on the Won't do list; if so, sharpen how section 5 is written.

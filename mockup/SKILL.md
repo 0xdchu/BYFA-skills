@@ -40,6 +40,9 @@ Static HTML, no framework, no backend — the point is to see and approve the UI
 ### 3. Copy and rename the template
 - Do: copy `template/` into the repo (`labs/app/`, `app-mockup/`, …), replace product name and copy placeholders.
 - Do: the device frame is a 390px box inside the desktop viewport, so `@media` queries never fire inside it. Write mobile layout as `.device-mobile ...` rules (or container queries on an inner wrapper), and check at 390 for real.
+- Do: give the frame `transform: translateZ(0)` so `position: fixed` children (tab bar, sheet, toast) stay inside the 390px box instead of pinning to the browser window.
+- Do: keep the global `[hidden]{display:none!important}` from the template; any component rule that sets `display` otherwise beats the `hidden` attribute (a menu stayed open in the aipub run).
+- Do: grid and flex children that hold long text or chip rows get `min-width: 0`; without it they force horizontal scroll at 390 (two aipub screens overflowed until this was added).
 - Done when: `index.html` opens over `file://` and the gallery renders without a server.
 
 ### 4. Write the demo seed
@@ -48,6 +51,8 @@ Static HTML, no framework, no backend — the point is to see and approve the UI
 
 ### 5. Render screens and the gallery
 - Do: one render function per screen, registered in `RENDER`; one gallery card per screen, showing a live scaled thumbnail and Open/Mobile links. States (empty, loading, complete) live inside the screen and are reached by clicking, not as extra cards. No element `id`s inside screens — thumbnails render them more than once. Never wrap a whole screen or preview in an `<a>`; screens already contain links and buttons.
+- Do: scale each thumbnail from its card's real width (measure on render and resize), not a fixed `scale()`; a fixed factor leaves gaps or crops when the grid changes columns.
+- Do: diagrams or maps copied into the mockup folder so the team can open them (user flow, sequence, system map) are copies, not sources. Add a check assertion that each copy is byte-identical to its source file, or it drifts silently after the next edit to the source.
 - Done when: every screen opens from the gallery, and the thumbnail matches the page.
 
 ### 6. Wire interactions and states
@@ -57,7 +62,19 @@ Static HTML, no framework, no backend — the point is to see and approve the UI
 ### 7. Prove and deploy
 - Do: run `check.mjs`; rewrite its screen ids and selectors for the real screens while keeping each assertion's intent (a counter or list changes, a route renders, theme persists), adapting direction to the flow, then fix until 0 fail.
 - Do: deploy only when a repo and target (Vercel/project, Pages) are given: static, root = the folder, build/install empty, output `.`, noindex header. Otherwise a green local check is done.
+- Do: the link the team receives must open without a login. Vercel branch previews sit behind Vercel SSO by default and private chat artifacts open only for their owner, so neither is a share link; use the production URL of a noindex mockup project (or ask before turning preview protection off). In the aipub run the owner rejected a private artifact link because it had to go to the team.
+- Do: after the repo moves to another GitHub owner, the Vercel project keeps deploying only from the CLI until an admin of the new owner installs the Vercel GitHub app on that repo and `vercel git connect <url>` runs again; say so instead of assuming merges deploy.
 - Done when: `node check.mjs` exits 0, and if deployed the live URL returns 200 with the full gallery of cards.
+
+## Design-system variants (optional)
+
+Use when the owner wants the same screens in another design system to compare direction (for example Microsoft Fluent 2 or IBM Carbon).
+
+- Do: one extra stylesheet (`skins.css`) scoped by `<html data-skin="<name>">` that changes only tokens (colour, font, radius, shadow) and component shapes (tab indicator, nav selection, field style, notification border). Screens, copy and behaviour stay the same, so the comparison is fair.
+- Do: a selector in the mockup chrome, saved with the rest of the mockup state, and a `?skin=<name>` query so a link opens the right variant. Light and dark for each variant.
+- Do: per variant in `check.mjs`: the choice survives reload, the computed font and card radius match the system, no horizontal overflow on every route at 390 and 1440, the `?skin=` link works, and switching back removes the variant.
+- Don't: copy the other company's logo or assets; take token values from the system's public documentation. A system font that only ships with one OS (Segoe UI) falls back elsewhere; say so in the README.
+- Done when: the check is green for every variant and the README names the variants and the link format.
 
 ## Single-file mode (from a product spec)
 
@@ -82,7 +99,7 @@ Use when the input is `docs/SPEC.md` (and `docs/FLOW.html`) from `/product-spec`
 
 ## Done when
 
-- `node check.mjs` exits 0 (routes, theme persistence, hover colour + weight, loading → complete, 1440/390 no overflow, 0 console errors).
+- `node check.mjs` exits 0 (routes, theme persistence, hover colour + weight, loading → complete, 1440/390 no overflow, 0 console errors; copied diagrams equal their sources; each design-system variant if any).
 - The gallery lists every screen, and each opens on web and mobile, light and dark.
 - If deployed, the live URL is 200 and `X-Robots-Tag: noindex`.
 
@@ -99,6 +116,7 @@ Use when the input is `docs/SPEC.md` (and `docs/FLOW.html`) from `/product-spec`
 
 | Date | What happened | What changed |
 |---|---|---|
+| 24/11/2026 | aipub mockup rebuilt to the new landing (13 screens, 91 → 101 assertions): fixed by hand a `hidden` menu that stayed visible, 390px overflow from grid children, fixed-scale thumbnails; owner rejected a private artifact link for team review; Vercel stopped deploying from git after the repo moved owner; owner asked for Fluent 2 / Carbon versions | Step 3 frame transform, `[hidden]`, `min-width: 0`; Step 5 measured thumbnails and copied-diagram check; Step 7 share links and git reconnect; new design-system variants section |
 | 23/11/2026 | Merged Build to Own Master `master-clickable-mockup` v0.0.2 | Added single-file mode: states table, `#state=` links, states panel, logo sources, spec feedback loop |
 | 20/11/2026 | Trial 2, fresh agent on a 4-stage flow (8 screens): 53 pass, 0 fail; asked whether states get their own cards and how literal "keep every assertion" is | Step 5 one card per screen, states by click; Step 7 assertion intent; groups include billing |
 | 20/11/2026 | Trial 1, fresh agent on a 4-stage flow (10 screens): 72 pass, 0 fail; guessed at mobile-frame media queries, check selectors, seed state | Added the 390px frame rule, check-selector step, seed-at-start rule, focus assertion, deploy scope |

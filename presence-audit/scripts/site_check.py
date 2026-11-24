@@ -196,7 +196,7 @@ def walk_ld(node, out):
 
 def parse_robots(text):
     groups, cur, in_rules = [], None, False
-    for line in text.splitlines():
+    for line in text.lstrip("\ufeff").splitlines():
         line = line.split("#", 1)[0].strip()
         if ":" not in line:
             continue
@@ -282,9 +282,12 @@ def main():
     url = args.url if "://" in args.url else "https://" + args.url
     status, final, html, ctype, err, kind = fetch(url)
     p0 = urlsplit(url)
-    robots = check_robots(f"{p0.scheme}://{p0.netloc}", p0.path or "/")
+    robots = check_robots(f"{p0.scheme}://{p0.netloc}", (p0.path or "/") + (f"?{p0.query}" if p0.query else ""))
     res = {"url": url, "final_url": final, "status": status, "error": err, "error_kind": kind, "robots": robots}
     if not html:
+        if status == 200:
+            err, kind = "HTTP 200 with an empty body", "http"
+            res.update(error=err, error_kind=kind)
         res["verdict"] = "page not read"
         out(res, args)
         return 1
@@ -361,7 +364,10 @@ def robots_md(r):
 def to_md(r):
     L = [f"# Site check: {r['url']}", ""]
     if r.get("verdict") == "page not read":
-        if r["error_kind"] == "http":
+        if r["error"] == "HTTP 200 with an empty body":
+            L += ["The page returned 200 with an empty body. AI crawlers would read nothing either; "
+                  "check the page in a browser and the server's response to non-browser clients."]
+        elif r["error_kind"] == "http":
             L += [f"The server answered {r['error']} to this script. That does not prove AI crawlers are refused: "
                   "many sites block unknown user agents but allow named crawlers. Read the robots.txt table below, "
                   "then check the page in a browser or ask an assistant with web search to read the URL."]

@@ -111,6 +111,10 @@ def scorecard(recs):
         L.append(f"| {asst} | " + " | ".join(str(d.get(k, 0)) for k in ("correct", "partly", "wrong", "unknown", "blank")) +
                  f" | {'n/a' if rate is None else f'{rate:.0%} ({n})'} |")
     bad = sorted({v for r in recs if r["kind"] == "described" for v in [verdict(r)] if v.startswith("invalid:")})
+    badm = sorted({str(r.get("mentioned")) for r in recs if r["kind"] == "recommend"
+                   and r.get("mentioned") not in (None, "") and mentioned(r) is None})
+    if badm:
+        L.append(f"\nFix these mentioned values (use true or false; they are left out of the rate): {', '.join(badm)}")
     if bad:
         L.append(f"\nFix these verdict values (use correct, partly, wrong or unknown): {', '.join(bad)}")
     return "\n".join(L)

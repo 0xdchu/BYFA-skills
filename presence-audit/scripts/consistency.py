@@ -8,6 +8,8 @@ For each profile, fill `name_shown` and `bio` with exactly what the profile show
 (copy, do not paraphrase). The script reports whether the name matches the canonical
 name or an alias, how close the bio is to the positioning sentence, whether the bio
 names the category, and whether the profile links back to the website.
+Set `links_to_site` to true or false on a profile to override the link check, for
+example when the website link sits in a field the bio copy does not include.
 """
 import argparse
 import difflib

@@ -168,4 +168,6 @@ Re-run in a folder with `docs/SPEC.md`: read it and its history, continue that v
 
 ## Improve from use
 
+Untried so far: the ICP → UI table in section 4 (added 2026-11-24 from a review of the UI design process, accepted by the owner before any real use). The first spec that uses it logs here what the owner changed in it.
+
 After each use: log which part needed the most rounds, with the comment. Once a spec has been built into an MVP, check whether the building agent did anything on the Won't do list; if so, sharpen how section 5 is written.

@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.0.23 · 2026-11-24
+
+- New skill `usability-test`: the "test with 5 users" step between `/mockup` and code. Plan with 3-5 tasks taken from the flow's success criteria (no UI labels, a visible success state each), a screener from the spec's user groups, consent and a moderator script; a pilot that is never counted; local transcription and screen frames; a task table in counts ("3 of 5", never "60%") and findings with quotes, 0-4 severity and where to fix (spec, flow step or screen). Nothing changes in the spec, flow or mockup before the owner picks the fixes.
+
 ## 0.0.22 · 2026-11-24
 
 - New skill `presence-audit`: audit how AI assistants, search and the press describe a person or brand, and fix what makes them wrong. `site_check.py` reads a site the way AI crawlers do (raw HTML, robots.txt per AI bot, JSON-LD `sameAs`, about and pricing pages); `consistency.py` compares the name and positioning sentence across profiles; `ai_sheet.py` builds the in-app answer check and diffs two dated runs. Separates being described correctly (checkable) from being recommended (measured as a mention rate, never promised).

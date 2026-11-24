@@ -44,7 +44,11 @@ Open [reference.md](reference.md) for the full checklist, table template and rev
 4. **Add branches.** Decision, validation error, external failure, timeout, cancel, permission denied. Every failure branch names a recovery and where it returns; a dead end is a defect.
 5. **Add preconditions and results.** State what must be true before the step and what is true after it. Include data created or changed.
 6. **Annotate accessibility.** Keyboard path, focus order, label, error text, contrast, target size, no colour-only signal.
-7. **Define measurement.** Completion per step, time, error rate, retry rate, drop-off. Do not invent targets before a baseline.
+7. **Define measurement.** Completion per step, time, error rate, retry rate, drop-off. Do not invent targets before a baseline. Then write the **event plan** that will produce those numbers once the product is live (template in reference §2):
+   - One event per flow-spec row whose completion or drop-off is measured, plus one per failure branch that has a recovery. Name it `object_action` in `snake_case`, past tense, one name one meaning (`project_created`, `post_approved`, `payment_failed`); same rule as `/posthog` Step 4.
+   - For each event: the flow step number, when it fires (the result column, not the click: `post_approved` fires when the approval is saved), its properties (only what a metric needs; no email, name or free text), and where it is sent from. Money and anything confirmed by a server fires from the server.
+   - Map each metric in the metrics table to the events it is computed from (completion of step 4 = `post_approved` / `draft_opened`). A metric with no event is marked `unmeasured`.
+   - Hand the event plan to `/posthog` when the product is wired; this skill names events, it does not install tracking.
 8. **Choose notation and write the diagram brief.** A simple flowchart for one actor is enough. Use BPMN for pools/lanes and gateways across roles; use UML activity for software logic. The brief carries actors, boundary, entry/exit, failure group, legend and source (reference §6).
 9. **Draw or update the diagram, then check parity.** Every row in the spec appears in the diagram and every branch in the diagram appears in the spec. Give the brief to `graph` if an offline HTML diagram is wanted.
 10. **Review against the gate.** Use the Blocker / Should fix / Nit rubric in reference §4 and fix every blocker before handoff.
@@ -88,7 +92,8 @@ Add a measurement column when the flow has a metric owner. Keep one row per user
 - Accessibility notes exist for every input and error.
 - Each step has a measurable success signal or is marked unmeasured.
 - Notation is consistent and named; no mixing flowchart, BPMN and UML shapes.
-- Checked with a real user, or a documented inspection that walks every step against ISO 9241-110 and the WCAG checklist in reference §3, with the result recorded.
+- Every measured step and every recovered failure branch has an event in the event plan; no event fires on a click alone when the step's result is saved later.
+- Checked with real users (`/usability-test`, the round's `findings.md` named here), or a documented inspection that walks every step against ISO 9241-110 and the WCAG checklist in reference §3, with the result recorded.
 
 ## Done when
 
@@ -111,6 +116,7 @@ Add a measurement column when the flow has a metric owner. Keep one row per user
 | Branch coverage | Failure/recovery paths present vs identified risks | every high-risk path has one |
 | Spec/diagram parity | Steps and branches in table vs diagram | 100% match |
 | Review usefulness | Reviewer questions that the spec could not answer | 0 |
+| Event coverage | Measured steps and recovered failure branches without an event | 0 |
 
 ## Feedback log
 
@@ -118,4 +124,5 @@ Add a measurement column when the flow has a metric owner. Keep one row per user
 |---|---|---|
 | 2026-11-20 | First version, built from an ISO/WCAG review of a public product flow | Added flow spec, failure band, accessibility and measurement sections |
 | 2026-11-23 | Merged Build to Own Master `master-user-flow` v0.0.2 | Added the FLOW.html output section and `flow-template.html` |
+| 2026-11-24 | A review of the UI design process found step 7 named metrics but no events, so the flow handed nothing `/posthog` could wire, and the review gate asked for a real-user check with no skill behind it | Step 7 now ends in an event plan (reference §2); the gate checks event coverage and points to `/usability-test` |
 | 2026-11-20 | Fresh-agent trial on an invite/accept case: it split into two actor flows, marked metrics unmeasured, and asked whether two deciding actors need one flow or two | Step 1 now says one flow per deciding actor; added the stop rule for missing actors, permissions and baselines |

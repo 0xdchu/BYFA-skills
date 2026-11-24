@@ -4,6 +4,7 @@
 
 - New skill `usability-test`: the "test with 5 users" step between `/mockup` and code. Plan with 3-5 tasks taken from the flow's success criteria (no UI labels, a visible success state each), a screener from the spec's user groups, consent and a moderator script; a pilot that is never counted; local transcription and screen frames; a task table in counts ("3 of 5", never "60%") and findings with quotes, 0-4 severity and where to fix (spec, flow step or screen). Nothing changes in the spec, flow or mockup before the owner picks the fixes.
 - `product-spec`: section 4 gains an ICP → UI table (trait · what we know and its source · UI decision: device, frequency, comfort with software, apps they already use, what makes them trust a tool, their words), so layout follows the user groups in section 2; unknown traits become `TODO` or a warm-up question for `/usability-test`, never a stereotype. New eval E8.
+- `userflow`: step 7 ends in an event plan (reference §2): one `object_action` event per measured step and recovered failure branch, fired on the result not the click, properties without personal data, server-side for money; each metric names its events; the plan goes to `/posthog`. The review gate checks event coverage and points the real-user check to `/usability-test`. `mockup` suggests `/usability-test` after a green check.
 
 ## 0.0.22 · 2026-11-24
 

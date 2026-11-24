@@ -107,6 +107,8 @@ Use when the input is `docs/SPEC.md` (and `docs/FLOW.html`) from `/product-spec`
 - The gallery lists every screen, and each opens on web and mobile, light and dark.
 - If deployed, the live URL is 200 and `X-Robots-Tag: noindex`.
 
+Next: a green check proves the screens render, not that people can use them. Suggest `/usability-test` with the share link before any code.
+
 ## Eval
 
 | Metric | How to measure | Target |

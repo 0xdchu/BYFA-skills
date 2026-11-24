@@ -68,11 +68,15 @@ Static HTML, no framework, no backend — the point is to see and approve the UI
 
 ## Design-system variants (optional)
 
-Use when the owner wants the same screens in another design system to compare direction (for example Microsoft Fluent 2 or IBM Carbon).
+Use when the owner wants the same screens in another design system to compare direction. When the owner names two systems with "or", build both behind one selector: in the aipub run the owner compared, dropped one (Carbon) and asked for more until six systems sat side by side (Fluent 2, Material 3, shadcn/ui, Ant Design, Polaris, Atlassian).
 
 - Do: one extra stylesheet (`skins.css`) scoped by `<html data-skin="<name>">` that changes only tokens (colour, font, radius, shadow) and component shapes (tab indicator, nav selection, field style, notification border). Screens, copy and behaviour stay the same, so the comparison is fair.
 - Do: a selector in the mockup chrome, saved with the rest of the mockup state, and a `?skin=<name>` query so a link opens the right variant. Light and dark for each variant.
-- Do: per variant in `check.mjs`: the choice survives reload, the computed font and card radius match the system, no horizontal overflow on every route at 390 and 1440, the `?skin=` link works, and switching back removes the variant.
+- Do: keep the variant list in one place each: the `SKINS` array in `app.js`, one `<option>` per variant, and in `check.mjs` one map `{ name: [font substring, card radius] }` that the per-variant loop reads. Adding or dropping a system is then one CSS block plus three one-line edits.
+- Do: per variant in `check.mjs`: the choice survives reload, the computed font and card radius match the system, no horizontal overflow on every route at 390 and 1440, the `?skin=` link works, and switching back removes the variant. When a variant is dropped, a saved or linked old name must fall back to the default; assert that `?skin=<dropped>` changes nothing.
+- Do: a skin that sets `font-weight` on `.btn` silently cancels the base `.btn:hover` weight change (same specificity, later file wins), so re-declare `.btn:hover` weight in every skin that sets it; the hover assertion catches it only if it runs per variant.
+- Do: match the specificity of the base field rule. The template styles fields with `input:not([type=checkbox])…`; a skin rule for inputs inside a wrapper (search box, select pill) needs the same `:not()` chain or it loses, and the wrapped input shows a second border (Atlassian search box in the aipub run). Look at a screenshot of a page with a search box and a filter select for each variant.
+- Do: declare a non-public system font first (`"Atlassian Sans", -apple-system, …`, `"Segoe UI Variable Text", …`) so the computed `font-family` still names the system for the check, and say in the README that the browser shows a fallback. Keep the selector label readable at 390 (the longest name, "Material 3", was cut until the select got 118px).
 - Don't: copy the other company's logo or assets; take token values from the system's public documentation. A system font that only ships with one OS (Segoe UI) falls back elsewhere; say so in the README.
 - Done when: the check is green for every variant and the README names the variants and the link format.
 
@@ -116,6 +120,7 @@ Use when the input is `docs/SPEC.md` (and `docs/FLOW.html`) from `/product-spec`
 
 | Date | What happened | What changed |
 |---|---|---|
+| 24/11/2026 | aipub skins v2 and v3: Carbon dropped, Material 3, shadcn/ui, Ant Design, Polaris, Atlassian added (check 101 → 118); a double border on wrapped inputs found only from a screenshot; the mobile selector label was cut | Variants section: build both when the owner says "or", one list per place, dropped-name fallback, hover weight per skin, field specificity, non-public fonts, label width |
 | 24/11/2026 | aipub mockup rebuilt to the new landing (13 screens, 91 → 101 assertions): fixed by hand a `hidden` menu that stayed visible, 390px overflow from grid children, fixed-scale thumbnails; owner rejected a private artifact link for team review; Vercel stopped deploying from git after the repo moved owner; owner asked for Fluent 2 / Carbon versions | Step 3 frame transform, `[hidden]`, `min-width: 0`; Step 5 measured thumbnails and copied-diagram check; Step 7 share links and git reconnect; new design-system variants section |
 | 23/11/2026 | Merged Build to Own Master `master-clickable-mockup` v0.0.2 | Added single-file mode: states table, `#state=` links, states panel, logo sources, spec feedback loop |
 | 20/11/2026 | Trial 2, fresh agent on a 4-stage flow (8 screens): 53 pass, 0 fail; asked whether states get their own cards and how literal "keep every assertion" is | Step 5 one card per screen, states by click; Step 7 assertion intent; groups include billing |

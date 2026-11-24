@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.0.21 · 2026-11-24
+
+- `mockup`, design-system variants: build both systems when the owner says "or"; keep the variant list in one array, one option and one check map; a dropped name falls back to the default; re-declare `.btn:hover` weight in skins that set button weight; match the base field selector's specificity for wrapped inputs; name non-public fonts first; keep the selector label readable at 390. From the aipub six-system comparison.
+
 ## 0.0.20 · 2026-11-24
 
 - `mockup`: optional design-system variants (one scoped `skins.css`, selector + `?skin=` link, a check per variant); share links must open without a login (not Vercel previews or private artifacts); reconnect Vercel git after a repo changes owner; frame `translateZ(0)` for fixed children, `[hidden]` and `min-width: 0` rules, thumbnails scaled from the card width, a check that copied diagrams equal their sources. From the aipub mockup rebuild.

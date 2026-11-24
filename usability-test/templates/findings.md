@@ -1,6 +1,6 @@
 # <Product name>: usability findings, round <N>
 
-- Date: <YYYY-MM-DD> · Plan: plan.md · Participants: <k> of <group> (P1-P5) · Moderator: <role>
+- Date: <YYYY-MM-DD> · Plan: plan.md · Participants: <n> (<group>: P1…P5; <group 2>: P6…) · Moderator: <role>
 - Tested: <mockup link and version>
 
 ## Task results

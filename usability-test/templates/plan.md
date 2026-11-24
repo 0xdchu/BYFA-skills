@@ -1,7 +1,7 @@
 # <Product name>: usability test plan, round <N>
 
 - Date: <YYYY-MM-DD>
-- Tests: <mockup share link> (opens without a login: checked <date>)
+- Tests: <share link, opens without a login: checked <date>> | <offline mockup/index.html, sessions in person>
 - Spec: docs/SPEC.md v<x> · Flow: docs/FLOW.html
 - Moderator: <role, not the person who built the screens if possible>
 - Status: draft, waiting for the owner
@@ -34,7 +34,7 @@ Exclude: the team, friends who have seen the product, people building a similar 
 
 Invite: <short message the owner sends>
 
-Consent (read before recording): we record the screen and voice; only <who> watches it; we delete it on <date>; we write you as a code (P1-P5), never your name; you can stop at any time.
+Consent (read before recording): we record the screen and voice; only <who> watches it; we delete it on <date>; we write you as a code (P1, P2, …), never your name; you can stop at any time.
 
 ## 5. Moderator script (30-45 min)
 

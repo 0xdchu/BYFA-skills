@@ -42,7 +42,7 @@ The agent never contacts participants, never invents one, and never fills a sess
 3. The mockup: its share link and `#state=` links (gallery mode, step 7 of `/mockup`; it must open without a login), or the offline `mockup/index.html` (single-file mode). An offline file is tested in person on the moderator's machine, or deployed as `/mockup` step 7 says before any remote session.
 4. An earlier round in `docs/usability/`, if any: re-test its fixed problems first.
 
-Missing spec or flow: stop and say which skill to run first. Missing mockup: test the flow on paper only if the owner asks; say the result is weaker.
+Missing spec or flow: stop and say which skill to run first. Missing mockup: test the flow on paper only if the owner asks; say the result is weaker. A FLOW.html with diagrams but no flow-spec table: take steps and success states from the spec's main flow (section 4) and say so in the plan. A spec written before the ICP → UI table: skip those warm-up questions and say so.
 
 ## Steps
 
@@ -51,14 +51,16 @@ Missing spec or flow: stop and say which skill to run first. Missing mockup: tes
 - Turn them into **3-5 tasks**, one per question, in the order a real user meets them. Each task has:
   - a scenario in the participant's words, with a reason to do it ("Your shop opens a new branch next week; get the posts for it ready");
   - **no UI labels and no hints** ("click Create project" gives the answer away);
-  - a start link (URL or `#state=` link) so every participant starts from the same screen;
+  - a start link (URL, `#<screen>` or `#state=` link, whichever the mockup supports) so every participant starts from the same screen;
   - a **success state** someone can see on screen, taken from the flow-spec result column;
   - a time cap (agent suggestion: 2x the time a teammate needs; mark it so).
+- If the mockup has a demo shortcut that gives the answer away (a "use sample data" button, the states panel), hand the participant the real material instead (a file to paste, a message to copy) and collapse the panel.
+- A step the mockup only fakes (an outside service, an AI reply, an email): write one fixed sentence the moderator says at that point, log it in the session note, and do not score that step.
 - Done when: every task maps to a flow step number and has a visible success state.
 
 ### 2. Write the screener from the ICP
 - Turn each row of the spec's user table into 3-5 screening questions about what people **do today**, not who they say they are ("How did you make your last 5 posts?", not "Are you a content creator?").
-- **5 people per user group.** Two groups that use different screens: 5 each, or 3-4 each when time is short (say which). Five people find most of the problems a round can find; the rest comes from a second round after fixes (Nielsen, "Why You Only Need to Test with 5 Users", NN/g, 2000).
+- **5 people per user group.** Two groups that use different screens for most tasks: 5 each, or 3-4 each when time is short. Groups that differ on one branch only: ask the owner, 5 + 5 or 5 from the main group plus 2-3 from the other on that branch's task. Five people find most of the problems a round can find; the rest comes from a second round after fixes (Nielsen, "Why You Only Need to Test with 5 Users", NN/g, 2000).
 - Exclude: the team, friends who have seen the product, people who build similar products, unless they are the ICP.
 - Draft the invite message and a short consent text: what is recorded, who sees it, when it is deleted, that they can stop at any time.
 - Done when: the screener rejects someone outside the ICP on paper.
@@ -116,12 +118,12 @@ Also list what worked (tasks most people did without hesitation), so a fix does 
 ```
 docs/usability/<YYYY-MM-DD>-round<N>/
   plan.md        questions, tasks, screener, invite, consent, moderator script
-  sessions/P1.md … P5.md
+  sessions/P1.md … P<n>.md
   findings.md    task table, problems by severity, what worked
   raw/           recordings, full transcripts, frames (gitignored)
 ```
 
-Add `docs/usability/*/raw/` to `.gitignore` before the first session; recordings and full transcripts hold personal data. Files use participant codes P1-P5, never names, phone numbers or faces.
+Add `docs/usability/*/raw/` to `.gitignore` before the first session; recordings and full transcripts hold personal data. Files use participant codes P1…P<n> in order across all groups, never names, phone numbers or faces.
 
 ## Do not
 
@@ -156,6 +158,7 @@ Add `docs/usability/*/raw/` to `.gitignore` before the first session; recordings
 
 | Date | What happened | What changed |
 |---|---|---|
+| 2026-11-24 | Fresh-agent trial (plan only, no real people) on the public Citeable example spec, flow and offline mockup. It had to guess: 10 people needed codes past P5; the two user groups differed on one branch only; the mockup's "Use sample JSON" button gave a task away; one step needed an outside AI agent the mockup only fakes; the mockup starts from `#<screen>` hashes, not `#state=`; FLOW.html had no flow-spec table and the spec no ICP → UI table | Codes P1…P<n>; owner chooses group sizes when groups differ on one branch; demo shortcuts replaced by real material; one fixed moderator line for faked steps, not scored; any start-link form; fallbacks for a missing flow-spec table or ICP table. Sessions with real people still untried |
 | 2026-11-24 | First version. A review of the UI design process (core and ICP → user flow → mockup → test with users → analytics) found the "test with 5 users" step had no skill: `/mockup` proves screens render, and the userflow gate asks for "checked with a real user" with no method behind it | New skill; not yet run on a real round. Log the first round here, with what the owner changed in the plan |
 
 ## This skill must improve itself

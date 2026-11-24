@@ -1,6 +1,6 @@
 ---
 name: usability-test
-description: Test a user flow or clickable mockup with 5 people who match the ICP before code, then turn the sessions into ranked findings that point back to the spec section, flow step or screen to fix. Writes the plan (3-5 tasks from the flow's success criteria, an ICP screener, consent, a moderator script), guides a pilot and 5 think-aloud sessions, transcribes recordings locally, scores each task and writes findings with verbatim quotes, "k of 5" counts and a 0-4 severity. Use when saying "usability test", "user test", "test the mockup with users", "thử với khách", "thử với 5 người", "kiểm thử khả dụng", or when the userflow review gate still needs "checked with a real user". Not for discovery interviews before any design (product-spec section 2), drawing the flow (userflow), building screens (mockup), analytics on a live product (posthog), or A/B tests.
+description: Test a user flow or clickable mockup with 5 people who match the ICP before code, then turn the sessions into ranked findings that point back to the spec section, flow step or screen to fix. Writes the plan (3-5 tasks from the flow's success criteria, an ICP screener, consent, a moderator script), guides a pilot and 5 think-aloud sessions, transcribes recordings locally, scores each task and writes findings with verbatim quotes, "k of 5" counts and a 0-4 severity. Use when saying "usability test", "user test", "test the mockup with users", "thử với khách", "thử với 5 người", "kiểm thử khả dụng", or when the userflow review gate has no usability round yet. Not for discovery interviews before any design (product-spec section 2), drawing the flow (userflow), building screens (mockup), analytics on a live product (posthog), or A/B tests.
 metadata:
   category: product
   version: "0.1.0"
@@ -15,7 +15,7 @@ A mockup that the team finds clear proves nothing; the team already knows how it
 ## When to use
 
 - A clickable mockup (`/mockup`) or a working build exists and the main flow is drawn (`/userflow`).
-- The userflow review gate's last item, "checked with a real user", is still open.
+- The userflow review gate's last item has an inspection but no usability round yet.
 - A fixed version needs a second round to see whether the fixes worked.
 
 ## Don't use
@@ -39,7 +39,7 @@ The agent never contacts participants, never invents one, and never fills a sess
 
 1. `docs/SPEC.md`: section 2 (user groups and how they do it today), section 3 (the result and its numbers), the ICP → UI table in section 4 if present.
 2. `docs/FLOW.html` and the flow-spec table: steps, failure branches, the measurement column.
-3. The mockup: its share link and `#state=` links (gallery mode, step 7 of `/mockup`; it must open without a login), or the offline `mockup/index.html` (single-file mode). An offline file is tested in person on the moderator's machine, or deployed as `/mockup` step 7 says before any remote session.
+3. The mockup: its share link and `#/<screen>` links (gallery mode, `/mockup` step "7. Prove and deploy"; it must open without a login), or the offline `mockup/index.html` with its `#state=` links (single-file mode). An offline file is tested in person on the moderator's machine, or deployed as `/mockup` step "7. Prove and deploy" says before any remote session.
 4. An earlier round in `docs/usability/`, if any: re-test its fixed problems first.
 
 Missing spec or flow: stop and say which skill to run first. Missing mockup: test the flow on paper only if the owner asks; say the result is weaker. A FLOW.html with diagrams but no flow-spec table: take steps and success states from the spec's main flow (section 4) and say so in the plan. A spec written before the ICP → UI table: skip those warm-up questions and say so.
@@ -81,8 +81,8 @@ Write the script into the plan (`templates/plan.md`). 30-45 minutes, one person 
 ### 5. Transcribe and look
 - Recordings go in `docs/usability/<round>/raw/`, which is gitignored. They stay on this machine and are never uploaded to a third-party service unless the consent text says so.
 - Check the tools first: `command -v whisper ffmpeg`. Missing one: skip that part, work from the moderator's timestamped notes, and say in `findings.md` which sessions had no transcript or no frames.
-- Transcribe each recording with a local Whisper in the session's language (`whisper <file> --language <code>`). Long files use a lot of memory; on Linux run it under a cap (`systemd-run --user --scope -p MemoryMax=8G whisper …`).
-- From the screen recording, cut frames with `ffmpeg` around each task (one frame every 2-5 seconds into a contact sheet) and read them as images, to see where they clicked, not only what they said.
+- Transcribe each recording with a local Whisper in the session's language (`whisper <file> --language <code> --output_dir docs/usability/<round>/raw/`; without `--output_dir` it writes transcripts into the current folder, outside the gitignored one). Long files use a lot of memory; on Linux run it under a cap (`systemd-run --user --scope -p MemoryMax=8G whisper … --output_dir …`).
+- From the screen recording, cut frames with `ffmpeg` around each task (one frame every 2-5 seconds into a contact sheet, written to `raw/` too) and read them as images, to see where they clicked, not only what they said.
 - Write one `sessions/P<n>.md` per participant (template in `templates/plan.md`): warm-up answers, then per task outcome, time, wrong turns, SEQ, quotes with timestamps.
 
 ### 6. Score each task
@@ -111,7 +111,7 @@ Also list what worked (tasks most people did without hesitation), so a fix does 
 - One message: full path of `findings.md`; the task table; the severity 3-4 problems first; the 3 findings the agent is least sure of and why.
 - The owner decides what to fix. The agent changes the spec, flow or mockup only after that decision, through `/product-spec`, `/userflow` or `/mockup`.
 - After fixes: round 2 with 5 **new** people, on the tasks that touched fixed problems plus one task that worked, to catch regressions.
-- Record the round in the `## Review` section of the flow spec (`/userflow` reference §2): "Usability round <N>: `<date>`, `docs/usability/<round>/findings.md`", and in `START-HERE.md`.
+- Record the round in the `## Review` section of the flow spec (`/userflow` reference §2): "Usability round <N>: `<date>`, `docs/usability/<round>/findings.md`", and in `START-HERE.md`. No flow spec file (a FLOW.html with diagrams only): record it in `START-HERE.md` only, and say so.
 
 ## Output
 
@@ -140,7 +140,7 @@ Add `docs/usability/*/raw/` to `.gitignore` before the first session; recordings
 
 - `findings.md` has the task table filled for every participant who took part, and every problem has k of N, evidence, severity and where to fix.
 - Every severity 3-4 problem has a disposition from the owner: fix now, fix later with a reason, or not a problem with a reason.
-- The flow spec's `## Review` section names this round.
+- The flow spec's `## Review` section names this round (or `START-HERE.md`, when there is no flow spec file).
 
 ## Eval
 

@@ -39,9 +39,9 @@ Consent (read before recording): we record the screen and voice; only <who> watc
 ## 5. Moderator script (30-45 min)
 
 1. Open: "We are testing the product, not you. There are no wrong answers. Please say out loud what you are thinking."
-2. Warm-up: <2-3 questions on how they do this job today>
+2. Warm-up: <2-3 questions on how they do this job today> + <one per `TODO` trait in the spec's ICP → UI table>
 3. Tasks T1…Tn. After each: "How easy or hard was that, from 1 (very hard) to 7 (very easy)?"
-4. Rules: do not help or explain. Answer with "What would you expect?". Silent 10 s: "What are you thinking now?". Past the cap: mark failed, smallest hint, note it, go on.
+4. Rules: do not help or explain. Answer with "What would you expect?". Silent 10 s: "What are you thinking now?". Past the cap or stuck: smallest hint, note it. Finished after it = success with hint; not finished = fail, go on.
 5. Close: "What was most confusing?" · "What would you tell a friend this does?"
 
 ## 6. Pilot

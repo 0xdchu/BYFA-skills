@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.0.22 · 2026-11-24
+
+- New skill `presence-audit`: audit how AI assistants, search and the press describe a person or brand, and fix what makes them wrong. `site_check.py` reads a site the way AI crawlers do (raw HTML, robots.txt per AI bot, JSON-LD `sameAs`, about and pricing pages); `consistency.py` compares the name and positioning sentence across profiles; `ai_sheet.py` builds the in-app answer check and diffs two dated runs. Separates being described correctly (checkable) from being recommended (measured as a mention rate, never promised).
+
 ## 0.0.21 · 2026-11-24
 
 - `mockup`, design-system variants: build both systems when the owner says "or"; keep the variant list in one array, one option and one check map; a dropped name falls back to the default; re-declare `.btn:hover` weight in skins that set button weight; match the base field selector's specificity for wrapped inputs; name non-public fonts first; keep the selector label readable at 390. From the aipub six-system comparison.

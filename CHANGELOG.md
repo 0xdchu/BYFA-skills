@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.0.20 · 2026-11-24
+
+- `mockup`: optional design-system variants (one scoped `skins.css`, selector + `?skin=` link, a check per variant); share links must open without a login (not Vercel previews or private artifacts); reconnect Vercel git after a repo changes owner; frame `translateZ(0)` for fixed children, `[hidden]` and `min-width: 0` rules, thumbnails scaled from the card width, a check that copied diagrams equal their sources. From the aipub mockup rebuild.
+
 ## 0.0.19 · 2026-11-23
 
 - New skill `team-sprint` (from Build to Own Master `master-team-sprint` v0.0.1): weekly meeting transcript to a meeting record and 5-part draft tickets (one assignee, deadline, label each); stops for Product to edit, and writes to Linear (document, issues in the current cycle, links) only after a clear approval; markdown export when there is no Linear MCP.

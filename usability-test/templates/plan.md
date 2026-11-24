@@ -18,7 +18,7 @@ Read aloud one at a time. No UI labels, no hints.
 
 | # | Scenario (participant's words) | Start link | Success state on screen | Time cap | Question |
 |---|---|---|---|---|---|
-| T1 | <reason + goal> | <URL or #state=…> | <what is visible when done> | <min> (agent suggestion) | Q1 |
+| T1 | <reason + goal> | <URL, #/<screen> or #state=…> | <what is visible when done> | <min> (agent suggestion) | Q1 |
 
 ## 3. Who we test with
 

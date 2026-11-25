@@ -82,7 +82,7 @@
 
 ## 0.0.6 · 2026-09-27
 
-- `byfa-event-review`: from a talk's recording or video plus slide images, rewrites each talk in full (no summarizing), with independent agent review and a completeness-measurement script. Example output: https://homus.dev. Original: https://github.com/0xdonniechu/event-review
+- `byfa-event-review`: from a talk's recording or video plus slide images, rewrites each talk in full (no summarizing), with independent agent review and a completeness-measurement script. Example output: https://homus.dev. Original: https://github.com/0xdchu/event-review
 
 ## 0.0.5 · 2026-09-15
 
@@ -121,7 +121,7 @@ brand prefix (following the OMC product-name-prefix pattern) and an English name
 - `research-market` → `byfa-researchmarket`
 - `teardown` → `byfa-teardown`
 
-README gained a program intro, pointing to github.com/0xdonniechu/BYFA-skills.
+README gained a program intro, pointing to github.com/0xdchu/BYFA-skills.
 
 ## 0.0.3 · 2026-08-30
 

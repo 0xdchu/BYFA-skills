@@ -2,7 +2,7 @@
 
 This document is for users who have **never installed a skill**. This repo's skills cover eight workflows: `market-research`, `teardown`, `master-winning-product`, `country-map`, `page-quality`, `posthog`, `optimize-mac` and `event-review`. The coding-specific skills (`sdlc`, `agent-team`, `whats-next`, `create-skill`, `secrets`) are no longer part of this repo.
 
-Repo: [github.com/0xdonniechu/BYFA-skills](https://github.com/0xdonniechu/BYFA-skills)
+Repo: [github.com/0xdchu/BYFA-skills](https://github.com/0xdchu/BYFA-skills)
 
 ---
 
@@ -33,12 +33,12 @@ Skill names are always **English**. Guide content in the files is English.
 
 Open **Claude Code**, paste this entire line:
 
-> Install byfa-skills: run `git clone https://github.com/0xdonniechu/BYFA-skills.git ~/.claude/skills/byfa-skills && ~/.claude/skills/byfa-skills/setup` then confirm all eight skills are picked up.
+> Install byfa-skills: run `git clone https://github.com/0xdchu/BYFA-skills.git ~/.claude/skills/byfa-skills && ~/.claude/skills/byfa-skills/setup` then confirm all eight skills are picked up.
 
 Or run it yourself in Terminal:
 
 ```bash
-git clone https://github.com/0xdonniechu/BYFA-skills.git ~/.claude/skills/byfa-skills
+git clone https://github.com/0xdchu/BYFA-skills.git ~/.claude/skills/byfa-skills
 ~/.claude/skills/byfa-skills/setup
 ```
 
@@ -51,7 +51,7 @@ Example with just `optimize-mac` (single-file skill):
 ```bash
 mkdir -p ~/.claude/skills/optimize-mac
 curl -o ~/.claude/skills/optimize-mac/SKILL.md \
-  https://raw.githubusercontent.com/0xdonniechu/BYFA-skills/main/optimize-mac/SKILL.md
+  https://raw.githubusercontent.com/0xdchu/BYFA-skills/main/optimize-mac/SKILL.md
 ```
 
 Swap `optimize-mac` for the skill name you need. `market-research`, `event-review`, `master-winning-product`, `country-map` and `presence-audit` ship extra files, so use Method A for them.
@@ -86,7 +86,7 @@ Cursor reads skills from `~/.cursor/skills/` (personal) or `.cursor/skills/` (in
 ### Method A: Symlink the whole repo (like Claude Code)
 
 ```bash
-git clone https://github.com/0xdonniechu/BYFA-skills.git ~/.cursor/skills/byfa-skills
+git clone https://github.com/0xdchu/BYFA-skills.git ~/.cursor/skills/byfa-skills
 mkdir -p ~/.cursor/skills
 for d in ~/.cursor/skills/byfa-skills/*/; do
   [ -f "$d/SKILL.md" ] || continue
@@ -98,7 +98,7 @@ done
 To install only `market-research` for Cursor, clone the repo and link the whole skill folder so references and chart assets come along:
 
 ```bash
-git clone https://github.com/0xdonniechu/BYFA-skills.git ~/.cursor/skills/byfa-skills
+git clone https://github.com/0xdchu/BYFA-skills.git ~/.cursor/skills/byfa-skills
 ln -s ~/.cursor/skills/byfa-skills/market-research ~/.cursor/skills/market-research
 ```
 
@@ -107,7 +107,7 @@ ln -s ~/.cursor/skills/byfa-skills/market-research ~/.cursor/skills/market-resea
 ```bash
 mkdir -p ~/.cursor/skills/optimize-mac
 curl -o ~/.cursor/skills/optimize-mac/SKILL.md \
-  https://raw.githubusercontent.com/0xdonniechu/BYFA-skills/main/optimize-mac/SKILL.md
+  https://raw.githubusercontent.com/0xdchu/BYFA-skills/main/optimize-mac/SKILL.md
 ```
 
 ### Verify the install (Cursor)

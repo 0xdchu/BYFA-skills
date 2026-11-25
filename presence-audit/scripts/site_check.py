@@ -22,7 +22,7 @@ import urllib.request
 from html.parser import HTMLParser
 from urllib.parse import quote, urljoin, urlparse, urlsplit, urlunsplit
 
-UA = "Mozilla/5.0 (compatible; presence-audit/1.0; +https://github.com/0xdonniechu/BYFA-skills)"
+UA = "Mozilla/5.0 (compatible; presence-audit/1.0; +https://github.com/0xdchu/BYFA-skills)"
 TIMEOUT = 20
 
 # kind: "search" bots fetch pages to answer and cite; "training" bots collect training data.

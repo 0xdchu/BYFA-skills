@@ -17,11 +17,11 @@ git checkout -b fix/short-name
 git add <file> && git commit -m "fix: ..."
 git push -u origin fix/short-name
 
-# 4. Open a pull request to 0xdonniechu/BYFA-skills, describe it in English
+# 4. Open a pull request to 0xdchu/BYFA-skills, describe it in English
 ```
 
 New to git? Open an issue retelling what happened to you — that counts as a contribution too.
-Or tell your agent: "fork 0xdonniechu/BYFA-skills, fix X, open a PR for me".
+Or tell your agent: "fork 0xdchu/BYFA-skills, fix X, open a PR for me".
 
 ## Rules for an accepted contribution
 
@@ -40,8 +40,8 @@ Or tell your agent: "fork 0xdonniechu/BYFA-skills, fix X, open a PR for me".
 - **developer community**: the `q-and-a` channel; program members are
   the fastest source of help — someone has tripped over most issues before you.
 - **GitHub Issues** of this repo: for bugs inside the skills themselves.
-- **Son Piaz**: [github.com/0xdonniechu](https://github.com/0xdonniechu), the original
+- **Son Piaz**: [github.com/0xdchu](https://github.com/0xdchu), the original
   author of these skills.
 
 Not in the program but want to learn the full method behind the skills:
-[github.com/0xdonniechu/BYFA-skills](https://github.com/0xdonniechu/BYFA-skills).
+[github.com/0xdchu/BYFA-skills](https://github.com/0xdchu/BYFA-skills).

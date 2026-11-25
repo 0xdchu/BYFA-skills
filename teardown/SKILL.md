@@ -37,7 +37,7 @@ not a failure.
 
 Pull everything into one `input/` folder: demo videos, homepage, pricing pages,
 docs, screenshots, the repo if they open-sourced it. For video, have the agent watch the transcript
-plus capture frames at timestamps (the [watch-cli](https://github.com/0xdonniechu/watch-cli)
+plus capture frames at timestamps (the [watch-cli](https://github.com/0xdchu/watch-cli)
 tool does this ready-made, or screenshot each segment yourself).
 
 **Public things only.** No cracking, no taking someone else's post-login data,

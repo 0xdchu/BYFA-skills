@@ -5,7 +5,7 @@ description: From a talk recording or transcript, plus slide photos or slide fil
 
 # /event-review
 
-Finished a deep talk but didn't catch everything? Give the agent slide photos and the transcript (or video); it rewrites the whole talk as a re-readable document: every idea, correct order, prose in your language with English technical terms, slides placed correctly, reviewed by a second agent. Example output: [homus.dev](https://homus.dev). Original: [0xdonniechu/event-review](https://github.com/0xdonniechu/event-review).
+Finished a deep talk but didn't catch everything? Give the agent slide photos and the transcript (or video); it rewrites the whole talk as a re-readable document: every idea, correct order, prose in your language with English technical terms, slides placed correctly, reviewed by a second agent. Example output: [homus.dev](https://homus.dev). Original: [0xdchu/event-review](https://github.com/0xdchu/event-review).
 
 # Event review
 

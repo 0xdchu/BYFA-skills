@@ -3,6 +3,7 @@
 ## 0.0.25 · 2026-11-25
 
 - `mockup` and `userflow` are now kept only here; coding-playbook drops its older copies. Brought in what only those copies had: `mockup` uses a `design-systems/` folder when the repo has one (skill and template README), and `userflow` step 9 sends what the system does behind a user-visible step to a `graph` sequence (with its 2026-11-22 history row).
+- `mockup` step 2 "Done when" accepts the copied design system's `tokens.css` as the place the colours live (review of the move).
 
 ## 0.0.24 · 2026-11-25
 

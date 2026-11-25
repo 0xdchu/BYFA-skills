@@ -50,7 +50,7 @@ Open [reference.md](reference.md) for the full checklist, table template and rev
    - Map each metric in the metrics table to the events it is computed from (completion of step 4 = `post_approved` / `draft_opened`). A metric with no event is marked `unmeasured`.
    - Hand the event plan to `/posthog` when the product is wired; this skill names events, it does not install tracking.
 8. **Choose notation and write the diagram brief.** A simple flowchart for one actor is enough. Use BPMN for pools/lanes and gateways across roles; use UML activity for software logic. The brief carries actors, boundary, entry/exit, failure group, legend and source (reference §6).
-9. **Draw or update the diagram, then check parity.** Every row in the spec appears in the diagram and every branch in the diagram appears in the spec. Give the brief to `graph` if an offline HTML diagram is wanted.
+9. **Draw or update the diagram, then check parity.** Every row in the spec appears in the diagram and every branch in the diagram appears in the spec. Give the brief to `graph` if an offline HTML diagram is wanted. What the system does behind a user-visible step is a separate sequence in `graph` (see its `examples/connect-exchange.json`): keep the spec rows to user-visible steps, and name the sequence step number in the row's Result cell.
 10. **Review against the gate.** Use the Blocker / Should fix / Nit rubric in reference §4 and fix every blocker before handoff.
 
 ## FLOW.html output (default diagram)
@@ -123,6 +123,7 @@ Add a measurement column when the flow has a metric owner. Keep one row per user
 | Date | What happened | What changed |
 |---|---|---|
 | 2026-11-20 | First version, built from an ISO/WCAG review of a public product flow | Added flow spec, failure band, accessibility and measurement sections |
+| 2026-11-22 | A backend request sequence (key service, database, background sync) was drawn as a "user flow"; no entry/exit, no recovery return | Step 9 now sends the backend side to a `graph` sequence and links it by step number |
 | 2026-11-23 | Merged Build to Own Master `master-user-flow` v0.0.2 | Added the FLOW.html output section and `flow-template.html` |
 | 2026-11-24 | A review of the UI design process found step 7 named metrics but no events, so the flow handed nothing `/posthog` could wire, and the review gate asked for a real-user check with no skill behind it | Step 7 now ends in an event plan (reference §2); the gate checks event coverage and points to `/usability-test` |
 | 2026-11-20 | Fresh-agent trial on an invite/accept case: it split into two actor flows, marked metrics unmeasured, and asked whether two deciding actors need one flow or two | Step 1 now says one flow per deciding actor; added the stop rule for missing actors, permissions and baselines |

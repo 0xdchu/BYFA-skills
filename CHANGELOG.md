@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.0.25 · 2026-11-25
+
+- `mockup` and `userflow` are now kept only here; coding-playbook drops its older copies. Brought in what only those copies had: `mockup` uses a `design-systems/` folder when the repo has one (skill and template README), and `userflow` step 9 sends what the system does behind a user-visible step to a `graph` sequence (with its 2026-11-22 history row).
+
 ## 0.0.24 · 2026-11-25
 
 - `mockup`: the frontmatter description is now a quoted YAML string; its unquoted `: ` made strict YAML parsers reject the file. Text unchanged.

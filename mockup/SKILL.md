@@ -36,7 +36,7 @@ Static HTML, no framework, no backend — the point is to see and approve the UI
 ### 2. Fix the design language
 - Do: if the repo has `design-systems/` (the coding-playbook repo carries six: shadcn for modern SaaS, Radix for app UI, Open Props for playful products, Fluent for Microsoft-style productivity, Carbon for enterprise consoles, Flex for luxury/private-banking editorial), pick one, copy its `tokens.css` and `components.css` beside the mockup and link them before `styles.css`. Otherwise:
 - Do: tokens for light and dark, one accent colour, a heading face, and the asset rules (mascot size, background, one pose per screen). If the product has no brand, choose a neutral pair and say so.
-- Done when: `styles.css :root` and the dark block hold every colour and font the screens use; no inline hex in screen markup.
+- Done when: the copied system's `tokens.css`, or `styles.css :root` and the dark block, hold every colour and font the screens use; no inline hex in screen markup.
 
 ### 3. Copy and rename the template
 - Do: copy `template/` into the repo (`labs/app/`, `app-mockup/`, …), replace product name and copy placeholders.
